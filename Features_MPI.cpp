@@ -158,14 +158,25 @@ int main(
     vector<double> X; /*saving the raw time series based on the random order*/
     sstmrd += "./categories.txt";
     int dim;
-    int n = 2508;
-    if(world_rank==99){
-        n = 2590;
+
+    int nsize = -1;
+    ifstream mfiles (sstmrd);
+    string line;
+    if(mfiles.is_open()){
+        while(getline(mfiles, line){
+            nsize++;
+        }
+    }
+    mfiles.close();
+
+    int n = nsize/world_size;//2508;
+    if(world_rank==world_size-1){
+        n += nsize%world_size; //2590;
     }
     // random indexes when assigning time series to processors
     string sstindex = "./sample.txt"; 
     vector<int> index; /*it saves the random indexes*/
-    Readindex(sstindex, index, n, world_rank*2508);
+    Readindex(sstindex, index, n, world_rank*n);
     Readtxt(sstmrd, X, dim, n, index);
     clock_t begin_time = clock();
     //start to make features;
