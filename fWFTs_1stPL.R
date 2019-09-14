@@ -1,5 +1,5 @@
 # It gives R code for constructing the fWFTs from a vector of univariate time series with length as a power of 2. 
-# And the 1st order persistence landscapes from a discretized univariate continuous function in general. 
+# And the 1st order persistence landscapes from a vector of discretized univariate continuous function in general. 
 ################################################ fWFTs construction #################################################
 fWFTs <- function(X, num){
   # Thanks to Dr. Stoffer providing the fWFTs code.
